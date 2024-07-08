@@ -1,0 +1,145 @@
+{
+    "address": "HcjgSDXySxpNu27GaZd2hbmj73DXQaK7pAmpwuP6CCFF",
+    "metadata": {
+      "name": "movie_review",
+      "version": "0.1.0",
+      "spec": "0.1.0",
+      "description": "Created with Anchor"
+    },
+    "instructions": [
+      {
+        "name": "add_review",
+        "discriminator": [
+          0,
+          87,
+          29,
+          155,
+          61,
+          216,
+          35,
+          190
+        ],
+        "accounts": [
+          {
+            "name": "review_account",
+            "writable": true
+          },
+          {
+            "name": "reviewer",
+            "writable": true,
+            "signer": true
+          }
+        ],
+        "args": [
+          {
+            "name": "movie_title",
+            "type": "string"
+          },
+          {
+            "name": "review",
+            "type": "string"
+          },
+          {
+            "name": "rating",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "name": "initialize",
+        "discriminator": [
+          175,
+          175,
+          109,
+          31,
+          13,
+          152,
+          155,
+          237
+        ],
+        "accounts": [
+          {
+            "name": "review_account",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "user",
+            "writable": true,
+            "signer": true
+          },
+          {
+            "name": "system_program",
+            "address": "11111111111111111111111111111111"
+          }
+        ],
+        "args": []
+      }
+    ],
+    "accounts": [
+      {
+        "name": "ReviewAccount",
+        "discriminator": [
+          119,
+          177,
+          213,
+          232,
+          143,
+          161,
+          255,
+          66
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "InvalidRating",
+        "msg": "Invalid rating. The rating must be between 0 and 5."
+      }
+    ],
+    "types": [
+      {
+        "name": "Review",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "movie_title",
+              "type": "string"
+            },
+            {
+              "name": "review",
+              "type": "string"
+            },
+            {
+              "name": "rating",
+              "type": "u8"
+            },
+            {
+              "name": "reviewer",
+              "type": "pubkey"
+            }
+          ]
+        }
+      },
+      {
+        "name": "ReviewAccount",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "reviews",
+              "type": {
+                "vec": {
+                  "defined": {
+                    "name": "Review"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
